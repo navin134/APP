@@ -1,13 +1,26 @@
 <html>
 	<head>
-	    <script>
-	        
+	    <script language="javaScript">
+	        function addDeleteItem(){
+				alert("test");
+				//if(document.getElementById("0").value!=""){
+					alert("test")
+					var value1 = document.getElementById("0").value;
+					document.getElementById("0").value="";
+					document.getElementById("1").value=value1;
+				//}
+			}
+			
+			function increment(){
+				
+			}
 	    </script>
     </head>
 	<body bgcolor="white">
+		<title>Wheel of Chance</title>
 		<font color="red" face="Comic Sans MS">
 			<center>
-				<h1>Wheel Of Fortune</h1>
+				<h1>Wheel Of Chance</h1>
 			</center>
 		</font>
 		<font color="white">
@@ -15,28 +28,30 @@
     			<img src="images/redButton.png" onclick="Spin_Stop()" width="100"/>
     			<br/>
     			<img src="images/R.png" width="40"/>
-    			<br/>
-    			<input type="text" id="1" size="25"/>
-    			<br/>
-    			<br/>
-    			<br/>
-    			<br/>
-    			<input type="text" id="2" size="25"/>0000000<input type="text" id="textrighttop" size="25"/>
+				<br/>
+				<input type="button" value="Add Item" onclick="addDeleteItem()"/>0000<input type="button" value="Delete Item"/>
+    			<br/><br/>
+    			<input type="text" id="0" size="20"/>
     			<br/>
     			<br/>
     			<br/>
     			<br/>
-    			<input type="text" id="3" size="25"/>0000000000000000000000<input type="text" id="textTop" size="25"/>
+    			<input type="text" id="1" size="20"/>0000000<input type="text" id="7" size="20"/>
     			<br/>
     			<br/>
     			<br/>
     			<br/>
-    			<input type="text" id="4" size="25"/>000000<input type="textrightbottom" id="text" size="25"/>
+    			<input type="text" id="2" size="20"/>0000000000000000000000<input type="text" id="6" size="20"/>
     			<br/>
     			<br/>
     			<br/>
     			<br/>
-    			<input type="text" id="5" size="25"/>
+    			<input type="text" id="3" size="20"/>000000<input type="text" id="5" size="20"/>
+    			<br/>
+    			<br/>
+    			<br/>
+    			<br/>
+    			<input type="text" id="4" size="20"/>
     		</center>
 		</font>
 	</body>
