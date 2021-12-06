@@ -1,65 +1,166 @@
 <html>
-	<head>
-	    <script language="javaScript">
-	        var counter = 0;
-	        function addDeleteItem(){
-				//alert("test");
-				//if(document.getElementById("0").value!=""){
-					//alert("test")
-					var list[] = []
-					var value1 = document.getElementById(counter).value;
-					document.getElementById(counter).value="";
-					document.getElementById(counter+1).value=value1;
-					increment();
-				//}
-			}
+<head>
+   <script language="javaScript">
+   
+		var counter = 0;
+		var bool = true;
+		var list = [
+		[],
+		[],
+		[],
+		[],
+		[],
+		[],
+		[],
+		[],
+		];
+
+	    function add(){
+			//alert("test");
+			if((document.getElementById("thing").value!="") && (counter <= 7)){
+			//alert("test")
 			
-			function increment(){
-				if(counter > 6){
-				    counter = 0;
-				}else{
-				    counter++;
+			//extracting values
+			list[counter][0] = document.getElementById("thing").value;
+			list[counter][1] = 0;
+			document.getElementById("thing").value="";//replacing with nothing
+			
+			//circling them around
+			var rotator = 0;
+			circler(counter+1);
+			counter++;
+			
+			
+			}else{
+				alert("cannot enter empty spaces or add more than 7 items");
+			}
+		}
+		
+		function playstop(){
+			if(bool){
+				document.getElementById("something").value="Stop";
+				bool = false;
+				return "i+1";
+			}else{
+				document.getElementById("something").value="Play";
+				bool = true;
+				return 
+			}
+		}
+		
+		function play(){
+			var random = parseInt(Math.random());
+			var loops = playstop();
+			circler(loops);
+		}
+		
+		function circler(loops){
+			for(var i=0; i<loops; i++){
+				document.getElementById(list[rotator][1]).value=list[rotator][0];
+				list[rotator][1]++;
+				rotator++;
+			}
+		}
+		
+		function del(){
+			if(counter>=0){
+				counter--;
+				list[counter][0] = "";
+				list[counter][1] = "";
+				document.getElementById("0").value="";
+				var rotator = 0;
+				for(var i=0; i<counter+1; i++){
+					list[rotator][1]--;
+					document.getElementById(list[rotator][1]).value=list[rotator][0];
+					rotator++;
 				}
 			}
-	    </script>
-    </head>
-	<body bgcolor="white">
-		<title>Wheel of Chance</title>
-		<font color="red" face="Comic Sans MS">
-			<center>
-				<h1>Wheel Of Chance</h1>
-			</center>
-		</font>
-		<font color="white">
-    		<center>
-    			<img src="images/redButton.png" onclick="Spin_Stop()" width="100"/>
-    			<br/>
-    			<img src="images/R.png" width="40"/>
-				<br/>
-				<input type="button" value="Add Item" onclick="addDeleteItem()"/>0000<input type="button" value="Delete Item"/>
-    			<br/><br/>
-    			<input type="text" id="0" size="20"/>
-    			<br/>
-    			<br/>
-    			<br/>
-    			<br/>
-    			<input type="text" id="1" size="20"/>0000000<input type="text" id="7" size="20"/>
-    			<br/>
-    			<br/>
-    			<br/>
-    			<br/>
-    			<input type="text" id="2" size="20"/>0000000000000000000000<input type="text" id="6" size="20"/>
-    			<br/>
-    			<br/>
-    			<br/>
-    			<br/>
-    			<input type="text" id="3" size="20"/>000000<input type="text" id="5" size="20"/>
-    			<br/>
-    			<br/>
-    			<br/>
-    			<br/>
-    			<input type="text" id="4" size="20"/>
-    		</center>
-		</font>
-	</body>
+		}
+		/*
+		// discarded code:
+		
+		var value1 = document.getElementById(counter).value;
+			document.getElementById(counter).value="";
+			increment();
+			document.getElementById(counter).value=value1;
+		
+		
+		function increment(){
+			if(counter > 6){
+			   counter = 0;
+			}else{
+			   counter++;
+			}
+		}
+		
+		function check(){
+			document.getElementById("check").value="Play";
+		}*/
+		
+
+   </script>
+   </head>
+<body bgcolor="white">
+<title>Wheel of Chance</title>
+	<font color="red" face="Comic Sans MS">
+		<center>
+			<h1>Wheel Of Chance</h1>
+		</center>
+	</font>
+	<font color="white">
+		<center>
+			<img src="images/redButton.png" onclick="Spin_Stop()" width="100"/>
+
+			<br/>
+
+			<img src="images/R.png" width="40"/>
+
+			<br/>
+				 
+			<input type="button" onclick="play()" value="Play" id="something"/>
+			<br/>
+			<br/>
+			00<input type="button" value="Add Item" onclick="add()"/>00<input type="text" id="thing" size="20"/>00<input type="button" value="Delete Item" onclick="del()"/>
+	</font>
+			<br/>
+			|
+			<br/>
+			|
+			<br/>
+			\/
+			<br/>
+	<font color="white">
+			<input type="text" id="0" size="20"/>
+		 
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+		 
+			<input type="text" id="1" size="20"/>0000000<input type="text" id="7" size="20"/>
+		 
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+		 
+			<input type="text" id="2" size="20"/>0000000000000000<input type="text" id="6" size="20"/>
+		 
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+		 
+			<input type="text" id="3" size="20"/>000000<input type="text" id="5" size="20"/>
+		 
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+		 
+			<input type="text" id="4" size="20"/>
+		</center>
+	</font>
+</body>
 </html>
+
