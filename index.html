@@ -4,6 +4,7 @@
    
 		var counter = 0;
 		var bool = true;
+		var timer;
 		var list = [
 		[],
 		[],
@@ -26,8 +27,7 @@
 			document.getElementById("thing").value="";//replacing with nothing
 			
 			//circling them around
-			var rotator = 0;
-			circler(counter+1);
+			circler();
 			counter++;
 			
 			
@@ -40,29 +40,28 @@
 			if(bool){
 				document.getElementById("something").value="Stop";
 				bool = false;
-				return "i+1";
+				//return "i+1";
 			}else{
 				document.getElementById("something").value="Play";
 				bool = true;
-				return 
 			}
 		}
 		
 		function play(){
 			var random = parseInt(Math.random());
-			var loops = playstop();
-			circler(loops);
+			timer = setTimeout( "circler()", 500);
 		}
 		
-		function circler(loops){
-			for(var i=0; i<loops; i++){
+		function circler(){
+		    var rotator = 0;
+			for(var i=0; i<counter+1; i++){
 				document.getElementById(list[rotator][1]).value=list[rotator][0];
 				list[rotator][1]++;
 				rotator++;
 			}
 		}
 		
-		function del(){
+		/*function del(){
 			if(counter>=0){
 				counter--;
 				list[counter][0] = "";
@@ -75,10 +74,10 @@
 					rotator++;
 				}
 			}
-		}
-		/*
-		// discarded code:
+		}*/
 		
+		// discarded code:
+		/*
 		var value1 = document.getElementById(counter).value;
 			document.getElementById(counter).value="";
 			increment();
