@@ -5,7 +5,7 @@
 		var counter = 0;
 		var bool = true;
 		var timer;
-		var check = list[0][1];
+		var checkC = 0;
 		var list = [
 		[],
 		[],
@@ -14,13 +14,13 @@
 		[],
 		[],
 		[],
-		[],
+		[]
 		];
+		var check = list[0][1];
 
 	    function add(){
 			//alert("test");
 			if((document.getElementById("thing").value!="") && (counter <= 7)){
-			//alert("test")
 			//extracting values
 			list[counter][0] = document.getElementById("thing").value;
 			list[counter][1] = 0;
@@ -52,18 +52,19 @@
 			if(!playstop()){
 			    timer = setTimeout( "circler()", 1000);
 			}else{
+			alert();
 			    clearTimeout(timer);
 			}
 			//var random = parseInt(Math.random()*10+1);
 		}
 		
 		function circler(){
-		    alert(counter);
+		    //alert(counter);
 		    var rotator = 0;
 			for(var i=0; i<counter+1; i++){
-			    alert(list + "this thing: " + rotator);
+			    //alert(list + "this thing: " + rotator);
 				document.getElementById(list[rotator][1]).value=list[rotator][0];
-				smartchecker();
+				smartChecker();
 				list[rotator][1]++;
 				rotator++;
 			}
@@ -72,7 +73,8 @@
 		
 		function smartChecker(){
 		    if(check==7){
-		        
+				check=true;
+				alert(check);
 		    }
 		}
 		
