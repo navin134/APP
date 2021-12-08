@@ -20,14 +20,14 @@
 
 	    function add(){
 			//alert("test");
-			if((document.getElementById("thing").value!="") && (counter <= 7)){
+			if((document.getElementById("thing").value!=""){
 			//extracting values
 			list[counter][0] = document.getElementById("thing").value;
 			list[counter][1] = 0;
 			document.getElementById("thing").value="";//replacing with nothing to clear 
 			//circling them around
 			circler();
-			counter++;
+			if(counter<=7){counter++}
 			
 			
 			}else{
