@@ -5,7 +5,8 @@
 		var counter = 0;
 		var bool = true;
 		var timer;
-		var loopsLeft = 0;
+		var loopsLeft = 1;
+		var loopsCounter = 0;
 		var list = [
 		[],
 		[],
@@ -45,20 +46,20 @@
 				document.getElementById("something").value="Play";
 				bool = true;
 				loopsLeft = parseInt(Math.random()*10+1);
+				loopsCounter = 0;
 				
 			}
 		}
 		
 		function play(){
-			/*if(!playstop()){
-			    timer = setTimeout( "circler()", 1000);
+			if(loopsCounter<loopsLeft){
+    			timer = setTimeout( "circler()", 1000);
+    			play();
 			}else{
-				alert();
 			    clearTimeout(timer);
-			}*/
-			alert();
-			timer = setTimeout( "circler()", 1000);
-			play();
+			}
+			
+			loopsCounter++
 			//var random = parseInt(Math.random()*10+1);
 		}
 		
@@ -101,11 +102,26 @@
 		
 		// discarded code:
 		/*
-		var value1 = document.getElementById(counter).value;
+		
+            if(!playstop()){
+			    timer = setTimeout( "circler()", 1000);
+			}else{
+				alert();
+			    clearTimeout(timer);
+			}
+		
+		    var value1 = document.getElementById(counter).value;
 			document.getElementById(counter).value="";
 			increment();
 			document.getElementById(counter).value=value1;
 		
+	    function increment(){
+		    if(counter > 6){
+		        counter = 0;
+		    }else{
+		        counter++;
+		    }
+		}
 		
 		function check(){
 			document.getElementById("check").value="Play";
