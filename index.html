@@ -3,10 +3,12 @@
    <script language="javaScript">
    
 		var counter = 0;
+		var count = 0;
 		var bool = true;
 		var timer;
-		var loopsLeft = 1;
-		var loopsCounter = 0;
+		var loopsLeft;
+		var loopsCounter;
+		var test = 10;
 		var list = [
 		[],
 		[],
@@ -20,58 +22,66 @@
 
 	    function add(){
 			//alert("test");
-			if((document.getElementById("thing").value!=""){
-			//extracting values
-			list[counter][0] = document.getElementById("thing").value;
-			list[counter][1] = 0;
-			document.getElementById("thing").value="";//replacing with nothing to clear 
-			//circling them around
-			circler();
-			if(counter<=7){counter++}
-			
+			if(document.getElementById("thing").value!="" && count<=7){
+				//extracting values
+				list[counter][0] = document.getElementById("thing").value;
+				list[counter][1] = 0;
+				document.getElementById("thing").value="";//replacing with nothing to clear 
+				//circling them around
+				circler();
+				if(counter<=6){
+					counter++;
+				}
+				console.log(list);
 			
 			}else{
 				alert("cannot enter empty spaces or add more than 7 items");
 				document.getElementById("thing").value="";
 			}
+			count++;
 		}
 		
-		function playstop(){
+		function playStop(){
 			if(bool){
 				document.getElementById("something").value="Stop";
 				bool = false;
+				loopsCounter = 0;
+				loopsLeft = 1000;
 				play();
-				
 			}else{
 				document.getElementById("something").value="Play";
 				bool = true;
-				loopsLeft = parseInt(Math.random()*10+1);
+				loopsLeft = parseInt(Math.random()*20+1);
 				loopsCounter = 0;
 				
 			}
 		}
 		
-		function play(){
-			if(loopsCounter<loopsLeft){
-    			timer = setTimeout( "circler()", 1000);
-    			play();
+		function play(bool){
+			//alert();
+			if(loopsCounter<=loopsLeft){
+				circler();
+    			timer = setTimeout( "play()", 150);
 			}else{
 			    clearTimeout(timer);
+				var winningValue = document.getElementById("0").value;
+				alert("Congratulations \n" + winningValue + "\n was selected!");
 			}
-			
-			loopsCounter++
+				
+			loopsCounter++;
 			//var random = parseInt(Math.random()*10+1);
 		}
 		
 		function circler(){
 		    //alert(counter);
+			//console.log(list);
 		    var rotator = 0;
 			for(var i=0; i<counter+1; i++){
 			    //alert(list + "this thing: " + rotator);
 				var placeHolder = list[rotator][1];
 				document.getElementById(placeHolder).value=list[rotator][0];
-				smartChecker(placeHolder, rotator);
 				list[rotator][1]++;
+				smartChecker(placeHolder, rotator);
 				rotator++;
 			}
 			//number++;
@@ -79,22 +89,18 @@
 		
 		function smartChecker(placeHolder, listNum){
 		    if(placeHolder >= 7){
-				alert(list[listNum][1]);
 				list[listNum][1] = 0;
-				alert(list[listNum][1]);
 		    }
 		}
 		
 		function del(){
-			if(counter>=0){
+			if(counter>0){
 				counter--;
-				list[counter][0] = "";
-				list[counter][1] = "";
-				document.getElementById("0").value="";
 				var rotator = 0;
 				for(var i=0; i<counter+1; i++){
-					list[rotator][1]--;
+					if(bool){list[rotator][1] - 2;}
 					document.getElementById(list[rotator][1]).value=list[rotator][0];
+					list[rotator][1]++;
 					rotator++;
 				}
 			}
@@ -103,7 +109,32 @@
 		// discarded code:
 		/*
 		
-            if(!playstop()){
+		function circler(bool, rotator, maxloops){
+		    //alert(counter);
+			//console.log(list);
+			var flipflop;
+			while(rotator < maxloops){
+			//for(var i=0; i<counter+1; i++){
+			    //alert(list + "this thing: " + rotator);
+				var placeHolder = list[rotator][1];
+				//alert(rotator);
+				/*if(bool){
+					flipflop = maxloops--;
+					placeHolder -= 2;
+				}else{
+					flipflop = rotator++;
+				}
+				console.log(rotator);
+				document.getElementById(placeHolder).value=list[rotator][0];
+				list[rotator][1]++;
+				smartChecker(placeHolder, rotator);
+				rotator++;
+				//rotator = flipflop;
+			}
+			//number++;
+		}
+		
+            if(!playStop()){
 			    timer = setTimeout( "circler()", 1000);
 			}else{
 				alert();
@@ -122,6 +153,14 @@
 		        counter++;
 		    }
 		}
+		-
+--
+---
+----
+-----
+-----------
+-----------------
+---------------------->
 		
 		function check(){
 			document.getElementById("check").value="Play";
@@ -147,7 +186,7 @@
 
 			<br/>
 				 
-			<input type="button" onclick="play()" value="Play" id="something"/>
+			<input type="button" onclick="playStop()" value="Play" id="something"/>
 			<br/>
 			<br/>
 			00<input type="button" value="Add Item" onclick="add()"/>00<input type="text" id="thing" size="20"/>00<input type="button" value="Delete Item" onclick="del()"/>
