@@ -96,14 +96,27 @@
 		function del(){
 			if(counter>0){
 				counter--;
-				var rotator = 0;
-				for(var i=0; i<counter+1; i++){
-					if(bool){list[rotator][1] - 2;}
+				var rotator = 4;//lengthOfList-1;
+				for(var i=counter; i>0; i--){
+				
+					if(list[rotator][1]< 2){
+						list[rotator][1] = 0;
+					}else{
+						list[rotator][1] -= 2;
+					}
 					document.getElementById(list[rotator][1]).value=list[rotator][0];
 					list[rotator][1]++;
-					rotator++;
+					rotator--;
 				}
 			}
+		}
+		
+		function lengthOfList(){
+			var woosh = 0;
+			while(list[woosh].length==2){
+				woosh++;
+			}
+			return woosh;
 		}
 		
 		// discarded code:
