@@ -1,66 +1,4 @@
 <html>
-<body bgcolor="white">
-<title>Wheel of Chance</title>
-	<font color="red" face="Comic Sans MS">
-		<center>
-			<h1>Wheel Of Chance</h1>
-		</center>
-	</font>
-	<font color="white">
-		<center>
-			<img src="images/redButton.png" onclick="Spin_Stop()" width="100"/>
-
-			<br/>
-
-			<img src="images/R.png" width="40"/>
-
-			<br/>
-				 
-			<input type="button" onclick="playStop()" value="Play" id="something"/>
-			<br/>
-			<br/>
-			00<input type="button" value="Add Item" onclick="add()"/>00<input type="text" id="thing" size="20"/>00<input type="button" value="Delete Item" onclick="del()"/>
-	</font>
-			<br/>
-			|
-			<br/>
-			|
-			<br/>
-			\/
-			<br/>
-	<font color="white">
-			<input type="text" id="0" size="20"/>
-		 
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-		 
-			<input type="text" id="1" size="20"/>0000000<input type="text" id="7" size="20"/>
-		 
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-		 
-			<input type="text" id="2" size="20"/>0000000000000000<input type="text" id="6" size="20"/>
-		 
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-		 
-			<input type="text" id="3" size="20"/>000000<input type="text" id="5" size="20"/>
-		 
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-		 
-			<input type="text" id="4" size="20"/>
-		</center>
-	</font>
-</body>
 <head>
    <script language="javaScript">
    
@@ -157,49 +95,29 @@
 		
 		function del(){
 			if(counter>0){
-				list[counter][0]="";
-				list[counter][1]="";
 				counter--;
-				count--;
-				var rotator = counter;//lengthOfList-1;
-				for(var i=0; i<counter+1; i++){
-					//alert(list + "this thing: " + rotator);
-					var placeHolder = list[rotator][1];
-					document.getElementById(placeHolder).value="";
-					if(placeHolder< 2){
-						placeHolder = 0;
-					}else{
-						placeHolder -= 2;
-					}
-					document.getElementById(placeHolder).value=list[rotator][0];
-					list[rotator][1]++;
-					smartChecker(placeHolder, rotator);
-					rotator--;
-				}
-				/*for(var i=counter; i>0; i--){
+				var rotator = 4;//lengthOfList-1;
+				for(var i=counter; i>0; i--){
 				
 					if(list[rotator][1]< 2){
 						list[rotator][1] = 0;
 					}else{
 						list[rotator][1] -= 2;
 					}
-					console.log(list[rotator][1]);
-					list[rotator][1] = 0;
-					document.getElementById("0").value=list[rotator][0];
+					document.getElementById(list[rotator][1]).value=list[rotator][0];
 					list[rotator][1]++;
-					console.log(list[rotator][1]);
 					rotator--;
-				}*/
+				}
 			}
 		}
 		
-		/*function lengthOfList(){
+		function lengthOfList(){
 			var woosh = 0;
 			while(list[woosh].length==2){
 				woosh++;
 			}
 			return woosh;
-		}*/
+		}
 		
 		// discarded code:
 		/*
@@ -264,4 +182,66 @@
 
    </script>
    </head>
+<body bgcolor="white">
+<title>Wheel of Chance</title>
+	<font color="red" face="Comic Sans MS">
+		<center>
+			<h1>Wheel Of Chance</h1>
+		</center>
+	</font>
+	<font color="white">
+		<center>
+			<img src="images/redButton.png" onclick="Spin_Stop()" width="100"/>
+
+			<br/>
+
+			<img src="images/R.png" width="40"/>
+
+			<br/>
+				 
+			<input type="button" onclick="playStop()" value="Play" id="something"/>
+			<br/>
+			<br/>
+			00<input type="button" value="Add Item" onclick="add()"/>00<input type="text" id="thing" size="20"/>00<input type="button" value="Delete Item" onclick="del()"/>
+	</font>
+			<br/>
+			|
+			<br/>
+			|
+			<br/>
+			\/
+			<br/>
+	<font color="white">
+			<input type="text" id="0" size="20"/>
+		 
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+		 
+			<input type="text" id="1" size="20"/>0000000<input type="text" id="7" size="20"/>
+		 
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+		 
+			<input type="text" id="2" size="20"/>0000000000000000<input type="text" id="6" size="20"/>
+		 
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+		 
+			<input type="text" id="3" size="20"/>000000<input type="text" id="5" size="20"/>
+		 
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+		 
+			<input type="text" id="4" size="20"/>
+		</center>
+	</font>
+</body>
 </html>
