@@ -1,214 +1,4 @@
 <html>
-<head>
-   <script language="javaScript">
-   
-		var counter = 0;
-		var count = 0;
-		var bool = true;
-		var timer;
-		var loopsLeft;
-		var loopsCounter;
-		var test = 10;
-		var list = [
-		[],
-		[],
-		[],
-		[],
-		[],
-		[],
-		[],
-		[]
-		];
-
-	    function add(){
-			//alert("test");
-			if(document.getElementById("thing").value!="" && count<=7){
-				//extracting values
-				list[counter][0] = document.getElementById("thing").value;
-				list[counter][1] = 0;
-				document.getElementById("thing").value="";//replacing with nothing to clear 
-				//circling them around
-				circler(false, 0, 0, counter+1);
-				console.log(counter);
-				if(counter<=6){
-					counter++;
-				}
-				console.log(list);
-			
-			}else{
-				alert("cannot enter empty spaces or add more than 7 items");
-				document.getElementById("thing").value="";
-			}
-			count++;
-		}
-		
-		function playStop(){
-			if(bool){
-				document.getElementById("something").value="Stop";
-				bool = false;
-				loopsCounter = 0;
-				loopsLeft = 1000;
-				play();
-			}else{
-				document.getElementById("something").value="Play";
-				bool = true;
-				loopsLeft = parseInt(Math.random()*20+1);
-				loopsCounter = 0;
-				
-			}
-		}
-		
-		function play(bool){
-			//alert();
-			if(loopsCounter<=loopsLeft){
-				circler(false, 0, 0, counter+1);
-    			timer = setTimeout( "play()", 150);
-			}else{
-			    clearTimeout(timer);
-				var winningValue = document.getElementById("0").value;
-				alert("Congratulations \n" + winningValue + "\n was selected!");
-			}
-				
-			loopsCounter++;
-			//var random = parseInt(Math.random()*10+1);
-		}
-		
-		/*function circler(){
-		    //alert(counter);
-			//console.log(list);
-		    var rotator = 0;
-			for(var i=0; i<counter+1; i++){
-			    //alert(list + "this thing: " + rotator);
-				var placeHolder = list[rotator][1];
-				document.getElementById(placeHolder).value=list[rotator][0];
-				list[rotator][1]++;
-				smartChecker(placeHolder, rotator);
-				rotator++;
-			}
-			//number++;
-		}*/
-
-		function circler(bool, rotator, loopStart, maxloops){
-		    //alert(counter);
-			//console.log(list);
-			var flipflop;
-			while(loopStart < maxloops){
-				console.log(rotator);
-				var placeHolder = list[rotator][1];
-				if(bool){
-					if(list[rotator][1]< 2){
-						list[rotator][1] = 0;
-					}else{
-						list[rotator][1] -= 2;
-					}
-					flipflop = --maxloops;
-					placeHolder -= 2;
-				}else{
-					flipflop = ++rotator;
-				}
-				document.getElementById(placeHolder).value=list[rotator][0];
-				list[rotator][1]++;
-				smartChecker(placeHolder, rotator);
-				rotator = flipflop;
-				loopStart++;
-			}
-			//number++;
-		}
-		
-		function smartChecker(placeHolder, listNum){
-		    if(placeHolder >= 7){
-				list[listNum][1] = 0;
-		    }
-		}
-		
-		function del(){
-			if(counter>0){
-				counter--;
-				count--;
-				var rotator = lengthOfList-1;
-				circler(true, rotator, counter, 0);
-				for(var i=counter; i>0; i--){
-				
-					if(list[rotator][1]< 2){
-						list[rotator][1] = 0;
-					}else{
-						list[rotator][1] -= 2;
-					}
-					document.getElementById(list[rotator][1]).value=list[rotator][0];
-					list[rotator][1]++;
-					rotator--;
-				}
-			}
-		}
-		
-		function lengthOfList(){
-			var woosh = 0;
-			while(list[woosh].length==2){
-				woosh++;
-			}
-			return woosh;
-		}
-		
-		// discarded code:
-		/*
-		
-		function circler(bool, rotator, maxloops){
-		    //alert(counter);
-			//console.log(list);
-			var flipflop;
-			while(rotator < maxloops){
-				var placeHolder = list[rotator][1];
-				if(bool){
-					flipflop = maxloops--;
-					placeHolder -= 2;
-				}else{
-					flipflop = rotator++;
-				}
-				console.log(rotator);
-				document.getElementById(placeHolder).value=list[rotator][0];
-				list[rotator][1]++;
-				smartChecker(placeHolder, rotator);
-				rotator++;
-				//rotator = flipflop;
-			}
-			//number++;
-		}
-		
-            if(!playStop()){
-			    timer = setTimeout( "circler()", 1000);
-			}else{
-				alert();
-			    clearTimeout(timer);
-			}
-		
-		    var value1 = document.getElementById(counter).value;
-			document.getElementById(counter).value="";
-			increment();
-			document.getElementById(counter).value=value1;
-		
-	    function increment(){
-		    if(counter > 6){
-		        counter = 0;
-		    }else{
-		        counter++;
-		    }
-		}
-		-
---
----
-----
------
------------
------------------
----------------------->
-		
-		function check(){
-			document.getElementById("check").value="Play";
-		}*/
-		
-
-   </script>
-   </head>
 <body bgcolor="white">
 <title>Wheel of Chance</title>
 	<font color="red" face="Comic Sans MS">
@@ -218,7 +8,7 @@
 	</font>
 	<font color="white">
 		<center>
-			<img src="images/redButton.png" onclick="thing()" width="100"/>
+			<img src="images/redButton.png" onclick="Spin_Stop()" width="100"/>
 
 			<br/>
 
@@ -271,4 +61,207 @@
 		</center>
 	</font>
 </body>
+<head>
+   <script language="javaScript">
+   
+		var counter = 0;
+		var count = 0;
+		var bool = true;
+		var timer;
+		var loopsLeft;
+		var loopsCounter;
+		var test = 10;
+		var list = [
+		[],
+		[],
+		[],
+		[],
+		[],
+		[],
+		[],
+		[]
+		];
+
+	    function add(){
+			//alert("test");
+			if(document.getElementById("thing").value!="" && count<=7){
+				//extracting values
+				list[counter][0] = document.getElementById("thing").value;
+				list[counter][1] = 0;
+				document.getElementById("thing").value="";//replacing with nothing to clear 
+				//circling them around
+				circler();
+				if(counter<=6){
+					counter++;
+				}
+				console.log(list);
+			
+			}else{
+				alert("cannot enter empty spaces or add more than 7 items");
+				document.getElementById("thing").value="";
+			}
+			count++;
+		}
+		
+		function playStop(){
+			if(bool){
+				document.getElementById("something").value="Stop";
+				bool = false;
+				loopsCounter = 0;
+				loopsLeft = 1000;
+				play();
+			}else{
+				document.getElementById("something").value="Play";
+				bool = true;
+				loopsLeft = parseInt(Math.random()*20+1);
+				loopsCounter = 0;
+				
+			}
+		}
+		
+		function play(bool){
+			//alert();
+			if(loopsCounter<=loopsLeft){
+				circler();
+    			timer = setTimeout( "play()", 150);
+			}else{
+			    clearTimeout(timer);
+				var winningValue = document.getElementById("0").value;
+				alert("Congratulations \n" + winningValue + "\n was selected!");
+			}
+				
+			loopsCounter++;
+			//var random = parseInt(Math.random()*10+1);
+		}
+		
+		function circler(){
+		    //alert(counter);
+			//console.log(list);
+		    var rotator = 0;
+			for(var i=0; i<counter+1; i++){
+			    //alert(list + "this thing: " + rotator);
+				var placeHolder = list[rotator][1];
+				document.getElementById(placeHolder).value=list[rotator][0];
+				list[rotator][1]++;
+				smartChecker(placeHolder, rotator);
+				rotator++;
+			}
+			//number++;
+		}
+		
+		function smartChecker(placeHolder, listNum){
+		    if(placeHolder >= 7){
+				list[listNum][1] = 0;
+		    }
+		}
+		
+		function del(){
+			if(counter>0){
+				list[counter][0]="";
+				list[counter][1]="";
+				counter--;
+				count--;
+				var rotator = counter;//lengthOfList-1;
+				for(var i=0; i<counter+1; i++){
+					//alert(list + "this thing: " + rotator);
+					var placeHolder = list[rotator][1];
+					document.getElementById(placeHolder).value="";
+					if(placeHolder< 2){
+						placeHolder = 0;
+					}else{
+						placeHolder -= 2;
+					}
+					document.getElementById(placeHolder).value=list[rotator][0];
+					list[rotator][1]++;
+					smartChecker(placeHolder, rotator);
+					rotator--;
+				}
+				/*for(var i=counter; i>0; i--){
+				
+					if(list[rotator][1]< 2){
+						list[rotator][1] = 0;
+					}else{
+						list[rotator][1] -= 2;
+					}
+					console.log(list[rotator][1]);
+					list[rotator][1] = 0;
+					document.getElementById("0").value=list[rotator][0];
+					list[rotator][1]++;
+					console.log(list[rotator][1]);
+					rotator--;
+				}*/
+			}
+		}
+		
+		/*function lengthOfList(){
+			var woosh = 0;
+			while(list[woosh].length==2){
+				woosh++;
+			}
+			return woosh;
+		}*/
+		
+		// discarded code:
+		/*
+		
+		function circler(bool, rotator, maxloops){
+		    //alert(counter);
+			//console.log(list);
+			var flipflop;
+			while(rotator < maxloops){
+			//for(var i=0; i<counter+1; i++){
+			    //alert(list + "this thing: " + rotator);
+				var placeHolder = list[rotator][1];
+				//alert(rotator);
+				/*if(bool){
+					flipflop = maxloops--;
+					placeHolder -= 2;
+				}else{
+					flipflop = rotator++;
+				}
+				console.log(rotator);
+				document.getElementById(placeHolder).value=list[rotator][0];
+				list[rotator][1]++;
+				smartChecker(placeHolder, rotator);
+				rotator++;
+				//rotator = flipflop;
+			}
+			//number++;
+		}
+		
+            if(!playStop()){
+			    timer = setTimeout( "circler()", 1000);
+			}else{
+				alert();
+			    clearTimeout(timer);
+			}
+		
+		    var value1 = document.getElementById(counter).value;
+			document.getElementById(counter).value="";
+			increment();
+			document.getElementById(counter).value=value1;
+		
+	    function increment(){
+		    if(counter > 6){
+		        counter = 0;
+		    }else{
+		        counter++;
+		    }
+		}
+		-
+--
+---
+----
+-----
+-----------
+-----------------
+---------------------->
+		
+		function check(){
+			document.getElementById("check").value="Play";
+		}*/
+		
+
+   </script>
+   </head>
 </html>
